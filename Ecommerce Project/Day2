@@ -1,0 +1,40 @@
+package com.test1.seleniumautomation;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import PFDetails.IndexPage;
+
+public class Guruday2 {
+	
+	WebDriver driver;
+  @Test
+  public void f() {
+	  
+	  IndexPage objIndex =  new IndexPage(driver);
+	  driver.get("http://live.guru99.com/");
+	  objIndex.clickOnMobile();
+	  System.out.println(objIndex.Priceofproduct1());
+	  objIndex.clickonSonyXperiaMobile();
+	  
+	  System.out.println(objIndex.ProductPrice());
+	
+	  Assert.assertEquals(objIndex.Priceofproduct1(),objIndex.ProductPrice(),"Messages are not equal");
+  }
+  @BeforeTest
+  public void beforeTest() {
+	  System.setProperty("webdriver.chrome.driver", "C:\\UBS\\chromedriver.exe");
+		driver = new ChromeDriver();
+		
+  }
+
+  @AfterTest
+  public void afterTest() {
+	  
+	  driver.quit();
+  }
+}
