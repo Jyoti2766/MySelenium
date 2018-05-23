@@ -17,12 +17,15 @@ public class Guruday2 {
 	  
 	  IndexPage objIndex =  new IndexPage(driver);
 	  driver.get("http://live.guru99.com/");
+	  // Clicking on mobile link
 	  objIndex.clickOnMobile();
-	  System.out.println(objIndex.Priceofproduct1());
+	  // clicking on Price of product Sony xperia
+	    System.out.println(objIndex.Priceofproduct1());
+	    // clicking on link of sony xperia
 	  objIndex.clickonSonyXperiaMobile();
-	  
+	 //Read the price of Sony Xperia
 	  System.out.println(objIndex.ProductPrice());
-	
+	//compare the price of both the product
 	  Assert.assertEquals(objIndex.Priceofproduct1(),objIndex.ProductPrice(),"Messages are not equal");
   }
   @BeforeTest
