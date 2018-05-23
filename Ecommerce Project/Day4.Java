@@ -55,7 +55,7 @@ public class Day4 {
 		Thread.sleep(3000);
 		//Clicking on close window button
 		
-		objIndex.CloseWinow();
+		objIndex.CloseWindow();
 
 				
 	}
