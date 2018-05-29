@@ -1,0 +1,86 @@
+package PFDetails;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
+
+public class IndexGuruDay10 {
+	 WebDriver driver;
+	 
+
+		@FindBy(xpath = "//*[@id='header']/div/div[2]/div/a")
+		WebElement clickOfMyAccountt;
+
+		@FindBy(xpath = "//*[@id='header-account']/div/ul/li[1]/a")
+		WebElement LinkOfMyAccount;
+
+		@FindBy(xpath = "//*[@id='username']")
+		WebElement username;
+
+		@FindBy(xpath = "//*[@id='login']")
+		WebElement EnterPassword;
+
+		@FindBy(xpath = "//*[@id='loginForm']/div/div[5]/input")
+		WebElement ClickOnLoginBUtton;
+		
+		@FindBy(xpath="//*[@id='message-popup-window']/div[1]/a/span")
+		WebElement PopHandler;
+		
+		@FindBy(xpath="//*[@id='nav']/li[1]/a/span")
+		WebElement ClickonSales;
+		
+		@FindBy(xpath="//*[@id='nav']/li[1]/ul/li[1]/a/span")
+		WebElement ClickonOrders;
+		
+		//@FindBy(xpath="//*[@id='sales_order_grid_export']")
+		//WebElement ExporttoOption;
+		
+		@FindBy(xpath="//button[@title = 'Export']")
+		WebElement ClickonExport;
+		
+		
+		
+		public IndexGuruDay10(WebDriver driver) {
+			this.driver = driver;
+			PageFactory.initElements(driver, this);
+
+		}
+
+		
+		public void username(String Val) {
+			username.sendKeys(Val);
+		}
+
+		public void EnterPassword() {
+			EnterPassword.sendKeys("guru99com");
+		}
+
+		public void ClickOnLoginBUtton() {
+			ClickOnLoginBUtton.click();
+		}
+		public void PopHandler(){
+		
+			PopHandler.click();
+		}
+		public void ClickonSales()
+		{
+			ClickonSales.click();
+		}
+		public void ClickonOrders()
+		{
+			ClickonOrders.click();
+		}
+		
+		/*public void ExporttoOption(String val)
+		{
+			ExporttoOption.click();
+			
+			
+		}*/
+		public void ClickonExport()
+		{
+			ClickonExport.click();
+		}
+}
