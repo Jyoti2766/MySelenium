@@ -14,11 +14,12 @@ import org.testng.annotations.Test;
 import PFDetails.IndexGuruDay9;
 
 public class GuruDay9 {
-	
+
 	WebDriver driver;
-	//need to look into this code
+
+	// need to look into this code
 	@Test
-	public void f() throws InterruptedException, IOException  {
+	public void f() throws InterruptedException, IOException {
 		IndexGuruDay9 objIndexGuruDay9 = new IndexGuruDay9(driver);
 
 		driver.get("http://live.guru99.com/index.php/");
@@ -35,40 +36,55 @@ public class GuruDay9 {
 		objIndexGuruDay9.ClickOnLoginBUtton();
 		objIndexGuruDay9.clickonMobile();
 		objIndexGuruDay9.AddIphonetoCart();
-		//Initial Price before applying coupon code
-		int Beforeprise= Integer.valueOf(objIndexGuruDay9.Pricebeforecouponcode().substring(1,4));
-		System.out.println("****Grant Total Before Coupon Code" +objIndexGuruDay9.Pricebeforecouponcode());
+		Thread.sleep(2000);
+		objIndexGuruDay9.Qtydetails("1");
+		objIndexGuruDay9.UpdateButtonClick();
+		// Initial Price before applying coupon code
+
+		double Beforeprise = Double.parseDouble(objIndexGuruDay9.Pricebeforecouponcode().replace(",", "").substring(1));
+		System.out.println("The Before Pirce is :" + objIndexGuruDay9.Pricebeforecouponcode().substring(1));
+
+		// System.out.println("****Grant Total Before Coupon Code"
+		// +objIndexGuruDay9.Pricebeforecouponcode());
 		objIndexGuruDay9.EnterCouponCode("GURU50");
-		
-		//Verifying if discount is applied
-		  //int intprice1 = Integer.valueOf(Beforeprise.substring(1,4));
-		  int exDiscount = (Beforeprise * 5)/100;
-		  String discnt = objIndexGuruDay9.Priceaftercouponcode();
-		  int actDiscount = Integer.valueOf(discnt.substring(2,4));
-		  
-		  
-		  int NewPrice = Integer.valueOf(objIndexGuruDay9.NewPrice().substring(1,4));
-		  
-		  		  try {
-			  Assert.assertEquals(exDiscount, actDiscount);
-			  System.out.println("A valid discount of $" + discnt.substring(2,4) + " has been applied");
-		  }
-		  		  
-		  catch(Exception ex) {
-			  System.out.println("Invalid Discount apllied!");
-			  ex.printStackTrace();
-		  }
-		  		
-		  		  try {
-		  		  assertNotEquals(Beforeprise, NewPrice);
-		  		  System.out.println("Valid Discounted amount is not being displayed");
-		  	  }
-		  	  
-		  	  catch(Exception e) {
-		  		  System.out.println("Invalid Discounted amount is being displayed!");
-		  		  e.printStackTrace();
-		  	  }
-		    }
+		Thread.sleep(2000);
+		objIndexGuruDay9.ClickOnApply();
+		Thread.sleep(2000);
+		// Verifying if discount is applied
+
+		double exDiscount = (Beforeprise * 5) / 100;
+		double DiscountCal = (Beforeprise - exDiscount);
+		System.out.println("The Discount Price is:" + DiscountCal);
+		Thread.sleep(2000);
+		double discnt1 = Double.parseDouble(objIndexGuruDay9.Priceaftercouponcode().replace(",", "").substring(1));
+		System.out.println("****Grant Total After Coupon Code" + objIndexGuruDay9.Priceaftercouponcode().substring(1));
+
+		// int actDiscount = Integer.valueOf(discnt1.substring(2,4));
+
+		double actDiscount = Double.valueOf(discnt1);
+
+		/*try {
+			Assert.assertEquals(discnt1, DiscountCal);
+			// System.out.println("A valid discount of $" +
+			// discnt1.substring(2,4) + " has been applied");
+			System.out.println("A valid discount of $" + discnt1 + " has been applied");
+		}
+		catch (Exception ex) {
+			System.out.println("Invalid Discount aplied!");
+			ex.printStackTrace();
+		}*/
+
+		try {
+			assertNotEquals(discnt1, DiscountCal);
+			System.out.println("Valid Discounted amount is not being displayed");
+		}
+
+		catch (Exception e) {
+			System.out.println("Invalid Discounted amount is being displayed!");
+			e.printStackTrace();
+		}
+	}
+
 	@BeforeTest
 	public void beforeTest() {
 		System.setProperty("webdriver.chrome.driver", "C:\\UBS\\chromedriver.exe");
@@ -81,6 +97,5 @@ public class GuruDay9 {
 
 		driver.quit();
 	}
- 
-}
 
+}
