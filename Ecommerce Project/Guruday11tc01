@@ -1,0 +1,84 @@
+package com.test1.seleniumautomation;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import PFDetails.IndexGuruDay11Tc01;
+import bsh.util.Util;
+
+public class GuruDay11Tc01 {
+	WebDriver driver;
+  @Test
+  public void f() throws InterruptedException {
+	  
+		IndexGuruDay11Tc01 objIndexGuruDay11Tc01 = new IndexGuruDay11Tc01(driver);
+
+		driver.get("http://live.guru99.com/index.php/backendlogin");
+
+		Thread.sleep(2000);
+
+		// clicking on my account link
+		// Enter details for login
+
+		objIndexGuruDay11Tc01.username("user01");
+		objIndexGuruDay11Tc01.EnterPassword();
+		objIndexGuruDay11Tc01.ClickOnLoginBUtton();
+		
+		
+		objIndexGuruDay11Tc01.PopHandler();
+		Thread.sleep(2000);
+		
+		//clicking on orders from sales drop down
+		objIndexGuruDay11Tc01.ClickonSales();
+		objIndexGuruDay11Tc01.ClickonOrders();
+		Thread.sleep(2000);
+		objIndexGuruDay11Tc01.ClickOnStatus();
+		Thread.sleep(3000);
+		
+		objIndexGuruDay11Tc01.ClickonSearch();
+		Thread.sleep(2000);
+		objIndexGuruDay11Tc01.ClickonFirstOrder();
+		Thread.sleep(2000);
+		objIndexGuruDay11Tc01.ClickOnAction();
+		Thread.sleep(2000);
+		objIndexGuruDay11Tc01.ClickOnSubmit();
+		Thread.sleep(2000);
+		Assert.assertEquals ("There are no printable documents related to selected orders.", objIndexGuruDay11Tc01.VerifyErrorMsg());
+		System.out.println("Error Message" +objIndexGuruDay11Tc01.VerifyErrorMsg());
+		Thread.sleep(2000);
+		
+		objIndexGuruDay11Tc01.ClickOnStatusforCoomplete();
+		Thread.sleep(2000);
+		objIndexGuruDay11Tc01.ClickonSearch();
+		Thread.sleep(2000);
+		objIndexGuruDay11Tc01.SelectFirstRecord1();
+		Thread.sleep(2000);
+		objIndexGuruDay11Tc01.ClickOnAction1();
+		objIndexGuruDay11Tc01.ClickOnSubmit();
+		Thread.sleep(2000);
+		
+		
+		//Verify if file is downloaded or not
+				String downloadPath = "C:\\Users\\babanbhj\\Downloads\\";
+				Assert.assertTrue(objIndexGuruDay11Tc01.isFileDownloaded_Ext(downloadPath, ".pdf"), "The requested file has not beem downloaded");
+			
+		
+  }
+		@BeforeTest
+		public void beforeTest() {
+			System.setProperty("webdriver.chrome.driver", "C:\\UBS\\chromedriver.exe");
+			driver = new ChromeDriver();
+
+		}
+
+		@AfterTest
+		public void afterTest() {
+
+			driver.quit();
+		}
+  }
+
