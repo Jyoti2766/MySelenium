@@ -1,0 +1,188 @@
+package PFDetails;
+
+import java.io.File;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Test;
+
+public class IndexGuruDay11Tc01 {
+  {
+		// TODO Auto-generated constructor stub
+	}
+
+
+@Test
+  public void f() {
+  } WebDriver driver;
+	 
+
+		@FindBy(xpath = "//*[@id='header']/div/div[2]/div/a")
+		WebElement clickOfMyAccountt;
+
+		@FindBy(xpath = "//*[@id='header-account']/div/ul/li[1]/a")
+		WebElement LinkOfMyAccount;
+
+		@FindBy(xpath = "//*[@id='username']")
+		WebElement username;
+
+		@FindBy(xpath = "//*[@id='login']")
+		WebElement EnterPassword;
+
+		@FindBy(xpath = "//*[@id='loginForm']/div/div[5]/input")
+		WebElement ClickOnLoginBUtton;
+		
+		@FindBy(xpath="//*[@id='message-popup-window']/div[1]/a/span")
+		WebElement PopHandler;
+		
+		@FindBy(xpath="//*[@id='nav']/li[1]/a/span")
+		WebElement ClickonSales;
+		
+		@FindBy(xpath="//*[@id='nav']/li[1]/ul/li[1]/a/span")
+		WebElement ClickonOrders;
+		@FindBy(xpath="//button[@title = 'Export']")
+		WebElement ClickonExport;
+		
+		@FindBy (xpath="//*[@id='sales_order_grid_filter_status']")
+		WebElement ClickOnStatus;
+		
+		@FindBy(xpath="//button[@title ='Search']")
+		WebElement ClickonSearch;
+		
+		/*@FindBy(xpath="//*[@id='id_cf2ce060de4b9424b2c408978a3776f8']")
+		WebElement ClickonSearch;*/
+				
+		
+		@FindBy (xpath="//*[@id='sales_order_grid_table']/tbody/tr[1]/td[1]/input")
+		WebElement ClickonFirstOrder;
+		
+		@FindBy (xpath="//*[@id='sales_order_grid_massaction-select']")
+		WebElement ClickOnAction;
+		
+		@FindBy(xpath="//button[@title ='Submit']")
+		WebElement ClickOnSubmit;
+		
+		@FindBy(xpath="//*[@id='messages']/ul/li/ul/li")
+		WebElement VerifyErrorMsg;
+		
+		@FindBy (xpath="//*[@id='sales_order_grid_filter_status']")
+		WebElement ClickOnStatusforCoomplete;
+		
+		@FindBy(xpath="//*[@id='sales_order_grid_table']/tbody/tr/td[1]/input")
+		WebElement SelectFirstRecord1;
+		//*[@id="sales_order_grid_table"]/tbody/tr/td[1]/input
+		
+		@FindBy (xpath="//*[@id='sales_order_grid_massaction-select']")
+		WebElement ClickOnAction1;
+
+		public IndexGuruDay11Tc01(WebDriver driver) {
+			this.driver = driver;
+			PageFactory.initElements(driver, this);
+
+		}
+
+		
+		public void username(String Val) {
+			username.sendKeys(Val);
+		}
+
+		public void EnterPassword() {
+			EnterPassword.sendKeys("guru99com");
+		}
+
+		public void ClickOnLoginBUtton() {
+			ClickOnLoginBUtton.click();
+		}
+		public void PopHandler(){
+		
+			PopHandler.click();
+		}
+		public void ClickonSales()
+		{
+			ClickonSales.click();
+		}
+		public void ClickonOrders()
+		{
+			ClickonOrders.click();
+		}
+		public void ClickOnStatus()
+		{
+			Select dlStatus = new Select(ClickOnStatus);
+			dlStatus.selectByVisibleText("Canceled");
+			
+			
+		}
+		
+	
+		
+		public void ClickonFirstOrder()
+		{
+			ClickonFirstOrder.click();
+		}
+		
+		public void ClickonSearch()
+		{
+			ClickonSearch.click();
+		}
+		
+		public void ClickOnAction()
+		{
+			Select PrintStatus1 = new Select (ClickOnAction);
+			
+			//PrintStatus1.selectByVisibleText("Print Invoices");
+			PrintStatus1.selectByIndex(4);
+			
+		}
+		public void ClickOnSubmit()
+		{
+			ClickOnSubmit.click();
+		}
+		
+		public String  VerifyErrorMsg()
+		{
+			 return VerifyErrorMsg.getText();
+		}
+		
+		public void ClickOnStatusforCoomplete()
+		{
+
+			Select dlStatus = new Select(ClickOnStatusforCoomplete);
+			dlStatus.selectByVisibleText("Complete");
+			
+			
+		}
+		
+		public void SelectFirstRecord1()
+		{
+			SelectFirstRecord1.click();
+		}
+		
+		public void ClickOnAction1()
+		{
+			Select PrintStatus2 = new Select (ClickOnAction1);
+			
+			//PrintStatus1.selectByVisibleText("Print Invoices");
+			PrintStatus2.selectByIndex(4);
+		}
+		
+		public static boolean isFileDownloaded_Ext(String dirPath, String ext){
+					boolean flag=false;
+			 	    File dir = new File(dirPath);
+			 	    File[] files = dir.listFiles();
+			 	    if (files == null || files.length == 0) {
+			 	        flag = false;
+			 	    }
+			 	    
+			 	    for (int i = 1; i < files.length; i++) {
+			 	    	if(files[i].getName().contains(ext)) {
+			 	    		flag=true;
+			 	    	}
+			 	    }
+			 	    return flag;
+			 	}
+			 	
+		
+}
