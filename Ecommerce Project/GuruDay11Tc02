@@ -1,0 +1,97 @@
+package com.test1.seleniumautomation;
+
+import static org.testng.Assert.assertEquals;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import PFDetails.IndexGuruDay11Tc02;
+
+public class GuruDay11Tc02 {
+
+	WebDriver driver;
+
+	@Test
+	public void f() throws InterruptedException, IOException {
+
+		IndexGuruDay11Tc02 IndexGuruDay11Tc02 = new IndexGuruDay11Tc02(driver);
+
+		driver.get("http://live.guru99.com");
+		Thread.sleep(2000);
+		driver.get("http://live.guru99.com/index.php/review/product/list/id/1");
+
+		Thread.sleep(2000);
+
+		IndexGuruDay11Tc02.Reviewpage();
+
+		String ActReviewmessage = IndexGuruDay11Tc02.SummaryBox();
+		System.out.println("Your Review Comments are:" +ActReviewmessage);
+		IndexGuruDay11Tc02.NickNameDetails();
+		IndexGuruDay11Tc02.ClickonSubmit();
+		Thread.sleep(2000);
+		String ReviewMessage = IndexGuruDay11Tc02.VerifyReviewSubmission();
+		Assert.assertEquals("Your review has been accepted for moderation.",ReviewMessage);
+		System.out.println("Successfully Submited Review" +ReviewMessage);
+		// Screenshot for review page
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(scrFile, new File("c:\\Users\\babanbhj\\ReviewDetails.jpg"));
+
+		driver.get("http://live.guru99.com/index.php/backendlogin");
+		Thread.sleep(2000);
+		IndexGuruDay11Tc02.username("user01");
+		IndexGuruDay11Tc02.EnterPassword();
+		IndexGuruDay11Tc02.ClickOnLoginBUtton();
+		Thread.sleep(2000);
+		IndexGuruDay11Tc02.PopHandler();
+		Thread.sleep(2000);
+		IndexGuruDay11Tc02.ClickonCatalouge();
+		IndexGuruDay11Tc02.ClickonReviewandRating();
+		IndexGuruDay11Tc02.CustomerReview();
+		IndexGuruDay11Tc02.ClickonPendingReviewMenue();
+		Thread.sleep(2000);
+
+		IndexGuruDay11Tc02.SortBy();
+		IndexGuruDay11Tc02.SelectRecord();
+		IndexGuruDay11Tc02.ClickOnEdit();
+		Thread.sleep(2000);
+
+		IndexGuruDay11Tc02.ChangeStatus();
+		IndexGuruDay11Tc02.SaveReview();
+		Thread.sleep(2000);
+		Assert.assertEquals("The review has been saved.",IndexGuruDay11Tc02.VerifySuccessMessage());
+		
+		System.out.println("Successmessage of review :"+ IndexGuruDay11Tc02.VerifySuccessMessage());
+		driver.get("http://live.guru99.com");
+		IndexGuruDay11Tc02.ClickOnMobile();
+		IndexGuruDay11Tc02.ClickonSonyXpreiaImage();
+		IndexGuruDay11Tc02.ClickOnreviewtab();
+		Thread.sleep(2000);
+		
+		///Needs to write code for last part
+		
+		
+	}
+
+	@BeforeTest
+	public void beforeTest() {
+		System.setProperty("webdriver.chrome.driver", "C:\\UBS\\chromedriver.exe");
+		driver = new ChromeDriver();
+
+	}
+
+	@AfterTest
+	public void afterTest() {
+
+		driver.quit();
+	}
+}
